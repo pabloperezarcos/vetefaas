@@ -10,8 +10,8 @@ public class UsuarioService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    private final String CREAR_USUARIO_FUNCTION_URL = "https://<tuFunctionAppName>.azurewebsites.net/api/CrearUsuario"; // FALTA CAMBIAR ESTO
-    private final String ASIGNAR_ROL_FUNCTION_URL = "https://<tuFunctionAppName>.azurewebsites.net/api/AsignarRol"; // FALTA CAMBIAR ESTO
+    private final String CREAR_USUARIO_FUNCTION_URL = "https://crearusuario.azurewebsites.net/api/crearusuario";
+    private final String ASIGNAR_ROL_FUNCTION_URL = "https://crearusuario.azurewebsites.net/api/asignarrol";
 
     public String crearUsuario(UsuarioDto usuarioDto) {
         String requestBody = usuarioDto.getNombre() + "," + usuarioDto.getEmail();
