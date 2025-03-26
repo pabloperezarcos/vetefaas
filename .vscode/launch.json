@@ -2,6 +2,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "VetefaasApplication",
+            "request": "launch",
+            "mainClass": "proyecto.vetefaas.VetefaasApplication",
+            "projectName": "vetefaas"
+        },
+        {
             "name": "Attach to Node Functions",
             "type": "node",
             "request": "attach",
