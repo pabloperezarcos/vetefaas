@@ -1,20 +1,11 @@
-# Usa una imagen base de Java
-FROM openjdk:17-jdk-alpine
-
-# Establece el directorio de trabajo en el contenedor
+# Etapa 1: Construcción del proyecto con Maven
+FROM maven:3.9.3-eclipse-temurin-17 AS build
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Argumento para el JAR generado por Maven
-ARG JAR_FILE=target/vetefaas-0.0.1-SNAPSHOT.jar
-
-# Copia el archivo JAR al contenedor
-COPY ${JAR_FILE} app.jar
-
-# Copia el wallet al contenedor
-COPY src/main/resources/wallet /app/wallet
-
-# Expone el puerto 8080
-EXPOSE 8080
-
-# Comando para ejecutar la aplicación
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+# Etapa 2: Imagen liviana para correr la app
+FROM eclipse-temurin:17
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
