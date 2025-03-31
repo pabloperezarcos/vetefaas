@@ -29,7 +29,7 @@ public class UsuarioController {
      * a la función "CrearUsuario" alojada en Azure.
      */
     @PostMapping
-    public ResponseEntity<String> crearUsuario(@RequestBody UsuarioDto usuarioDto) {
+    public ResponseEntity<String> crearUsuario(UsuarioDto usuarioDto) {
         String resultado = usuarioService.crearUsuario(usuarioDto);
         return ResponseEntity.ok(resultado);
     }
